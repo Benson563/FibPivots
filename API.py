@@ -54,3 +54,7 @@ def stockQuote(symbol):  # still gotta figure out how to parse
     print(data)
 
 # stockQuote('amd')
+
+
+
+#make a list of your 'watchlist'.... figure out if it is a correct stock name... if it is correct add to the watch list.
