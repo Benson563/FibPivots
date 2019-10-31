@@ -17,6 +17,7 @@ def dailyPivotInfo(symbol):  # gotta figure out how to parse of the daily info..
     print(pivotPoint)
     return pivotPoint
 
+
 def weeklyPivotInfo(symbol):
     ts = TimeSeries(key=key, output_format='pandas')
     data, meta_data = ts.get_weekly(symbol=symbol)
@@ -29,7 +30,7 @@ def weeklyPivotInfo(symbol):
     return pivotPoint
 
 
-#weeklyPivotInfo('amd')
+# weeklyPivotInfo('amd')
 
 
 def monthlyPivotInfo(symbol):
@@ -50,11 +51,14 @@ def monthlyPivotInfo(symbol):
 
 def stockQuote(symbol):  # still gotta figure out how to parse
     ts = TimeSeries(key=key, output_format='pandas')
-    data, meta_data = ts.get_quote_endpoint(symbol=symbol)
-    print(data)
+    data, meta_data = ts.get_quote_endpoint(symbol)
 
-# stockQuote('amd')
+    currentPrice = data.iloc[0, 4]
+
+    print(currentPrice)  # current price
 
 
+stockQuote('spy')
 
-#make a list of your 'watchlist'.... figure out if it is a correct stock name... if it is correct add to the watch list.
+# make a list of your 'watchlist'.... figure out if it is a correct stock name... if it is correct add to the watch
+# list.
