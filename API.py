@@ -6,7 +6,7 @@ import time
 key = 'D1UA2DG18SPT7MCN'
 
 
-def dailyPivotInfo(symbol):  # gotta figure out how to parse of the daily info..
+def dailyPivotInfo(symbol):
     ts = TimeSeries(key=key, output_format='pandas')
     data, meta_data = ts.get_daily(symbol=symbol, outputsize='full')
     high = data.iloc[0, 1]  # ['1. open', '2. high', '3. low', '4. close', '5. volume']
@@ -30,7 +30,7 @@ def weeklyPivotInfo(symbol):
     return pivotPoint
 
 
-# weeklyPivotInfo('amd')
+weeklyPivotInfo('amd')
 
 
 def monthlyPivotInfo(symbol):
@@ -49,13 +49,14 @@ def monthlyPivotInfo(symbol):
 # print('weekly info')
 # print(weeklyPivotInfo('amd'))
 
-def stockQuote(symbol):  # still gotta figure out how to parse
+def stockQuote(symbol):
     ts = TimeSeries(key=key, output_format='pandas')
     data, meta_data = ts.get_quote_endpoint(symbol)
 
-    currentPrice = data.iloc[0, 4]
-
+    cPrice = data.iloc[0, 4]
+    currentPrice = float(cPrice)
     print(currentPrice)  # current price
+
 
 
 stockQuote('spy')
