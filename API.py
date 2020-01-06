@@ -30,9 +30,6 @@ def weeklyPivotInfo(symbol):
     return pivotPoint
 
 
-weeklyPivotInfo('amd')
-
-
 def monthlyPivotInfo(symbol):
     ts = TimeSeries(key=key, output_format='pandas')
     data, meta_data = ts.get_monthly(symbol=symbol)
@@ -58,9 +55,22 @@ def stockQuote(symbol):
     print(currentPrice)  # current price
 
 
-
-stockQuote('spy')
-
 # make a list of your 'watchlist'.... figure out if it is a correct stock name... if it is correct add to the watch
 # list.
 #
+watchList = []
+
+
+def addList(symbol):
+    try:
+        stockQuote(symbol)
+        global watchList
+        watchList.append(symbol)
+
+    except ValueError:
+        print(symbol + 'is not a correct ticker')
+
+
+addList('tsla')
+
+print(watchList)
