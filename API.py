@@ -1,5 +1,6 @@
 # API Key for Alpha Vantage: D1UA2DG18SPT7MCN
 import pandas as pd
+import PivotCalculations
 from alpha_vantage.timeseries import TimeSeries
 import time
 
@@ -12,11 +13,10 @@ def dailyPivotInfo(symbol):
     high = data.iloc[0, 1]  # ['1. open', '2. high', '3. low', '4. close', '5. volume']
     low = data.iloc[0, 2]
     close = data.iloc[0, 3]
-    pivotPointCalculation = (high + low + close) / 3
-    pivotPoint = round(pivotPointCalculation, 2)
-    print(pivotPoint)
-    return pivotPoint
+    pivotList = PivotCalculations.fibPivot(high, low, close)
+    return pivotList
 
+#dailyPivotInfo('tsla')
 
 def weeklyPivotInfo(symbol):
     ts = TimeSeries(key=key, output_format='pandas')
@@ -52,7 +52,7 @@ def stockQuote(symbol):
 
     cPrice = data.iloc[0, 4]
     currentPrice = float(cPrice)
-    print(currentPrice)  # current price
+     # current price
 
 
 # make a list of your 'watchlist'.... figure out if it is a correct stock name... if it is correct add to the watch
